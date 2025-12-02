@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { calculateMetrics, type TaxiTrip, type DashboardMetrics } from "@/lib/taxi-data"
+import { calculateMetrics, type TaxiTrip, type DashboardMetrics, parseCSV } from "@/lib/taxi-data"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { SummaryCards } from "@/components/dashboard/summary-cards"
 import { RevenueChart } from "@/components/dashboard/revenue-chart"
@@ -18,17 +18,28 @@ export default function DashboardPage() {
   const loadData = useCallback(async () => {
     setIsLoading(true)
     try {
-      const response = await fetch("/api/fetch_data")
+      // Fetch the CSV file from the public directory (or API route serving static file)
+      // Assuming the CSV is moved to public/nyc_taxi_data.csv or similar
+      // For now, let's try to fetch one of the CSVs we know exists in the data folder
+      // In a real Vercel deployment, static files should be in 'public'
+      // We will need to move a CSV to 'public' for this to work seamlessly on client-side
+
+      // Attempting to fetch from the data directory served statically if configured, 
+      // but standard Next.js serves from 'public'. 
+      // Let's assume we will move 'queens_trips.csv' to 'public/queens_trips.csv'
+      const response = await fetch("/queens_trips.csv")
+
       if (!response.ok) {
-        throw new Error("Failed to fetch data")
+        throw new Error("Failed to fetch CSV data")
       }
-      const data: TaxiTrip[] = await response.json()
+
+      const csvText = await response.text()
+      const data = parseCSV(csvText)
+
       setTrips(data)
       setMetrics(calculateMetrics(data))
     } catch (error) {
       console.error("Error loading taxi data:", error)
-      // Fallback to mock data on error for demonstration purposes, or handle error state
-      // For now, let's just log it. In a real app, we'd show an error message.
     } finally {
       setIsLoading(false)
     }
