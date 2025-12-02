@@ -106,7 +106,8 @@ export function calculateMetrics(trips: TaxiTrip[]): DashboardMetrics {
   // Revenue by Borough
   const boroughRevenue = trips.reduce(
     (acc, trip) => {
-      acc[trip.borough] = (acc[trip.borough] || 0) + trip.total_amount
+      const borough = trip.borough || "Unknown"
+      acc[borough] = (acc[borough] || 0) + trip.total_amount
       return acc
     },
     {} as Record<string, number>,
@@ -139,9 +140,23 @@ export function calculateMetrics(trips: TaxiTrip[]): DashboardMetrics {
     .sort((a, b) => a.date.localeCompare(b.date))
 
   // Payment type distribution
+  // Map numeric payment types to readable names
+  const paymentTypeMap: Record<string, string> = {
+    "1": "Credit Card",
+    "2": "Cash",
+    "3": "No Charge",
+    "4": "Dispute",
+    "5": "Unknown",
+    "6": "Voided Trip"
+  }
+
   const paymentCounts = trips.reduce(
     (acc, trip) => {
-      acc[trip.payment_type] = (acc[trip.payment_type] || 0) + 1
+      // Handle numeric payment types from CSV (e.g., "1", "2")
+      const rawType = String(trip.payment_type)
+      const typeName = paymentTypeMap[rawType] || rawType || "Unknown"
+
+      acc[typeName] = (acc[typeName] || 0) + 1
       return acc
     },
     {} as Record<string, number>,

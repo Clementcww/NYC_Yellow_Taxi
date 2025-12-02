@@ -59,7 +59,7 @@ export function SummaryCards({ metrics }: SummaryCardsProps) {
           <div className="flex items-start justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-muted-foreground">{card.title}</p>
-              <p className="text-2xl font-bold text-foreground tracking-tight">{card.value}</p>
+              <p className="text-2xl font-bold text-[#F7B924] tracking-tight">{card.value}</p>
               <div className="flex items-center gap-1">
                 <span className={`text-xs font-medium ${card.trendUp ? "text-emerald-400" : "text-red-400"}`}>
                   {card.trend}

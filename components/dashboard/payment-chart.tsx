@@ -37,12 +37,13 @@ export function PaymentChart({ data }: PaymentChartProps) {
               backgroundColor: "rgba(23, 23, 23, 0.95)",
               border: "1px solid rgba(247, 185, 36, 0.3)",
               borderRadius: "8px",
-              color: "#fafafa",
+              color: "#F7B924",
             }}
             formatter={(value: number, name: string, props) => {
               const item = props.payload
               return [`${value} trips (${item.percentage}%)`, item.type]
             }}
+            itemStyle={{ color: "#F7B924" }}
           />
           <Legend
             verticalAlign="bottom"

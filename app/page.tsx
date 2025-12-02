@@ -18,26 +18,30 @@ export default function DashboardPage() {
   const loadData = useCallback(async () => {
     setIsLoading(true)
     try {
-      // Fetch the CSV file from the public directory (or API route serving static file)
-      // Assuming the CSV is moved to public/nyc_taxi_data.csv or similar
-      // For now, let's try to fetch one of the CSVs we know exists in the data folder
-      // In a real Vercel deployment, static files should be in 'public'
-      // We will need to move a CSV to 'public' for this to work seamlessly on client-side
+      // Fetch all CSV files in parallel
+      const [brooklynRes, manhattanRes, queensRes] = await Promise.all([
+        fetch("/brooklyn_trips.csv"),
+        fetch("/manhattan_trips.csv"),
+        fetch("/queens_trips.csv")
+      ])
 
-      // Attempting to fetch from the data directory served statically if configured, 
-      // but standard Next.js serves from 'public'. 
-      // Let's assume we will move 'queens_trips.csv' to 'public/queens_trips.csv'
-      const response = await fetch("/queens_trips.csv")
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch CSV data")
+      if (!brooklynRes.ok || !manhattanRes.ok || !queensRes.ok) {
+        throw new Error("Failed to fetch one or more CSV data files")
       }
 
-      const csvText = await response.text()
-      const data = parseCSV(csvText)
+      const brooklynText = await brooklynRes.text()
+      const manhattanText = await manhattanRes.text()
+      const queensText = await queensRes.text()
 
-      setTrips(data)
-      setMetrics(calculateMetrics(data))
+      const brooklynData = parseCSV(brooklynText).map((trip) => ({ ...trip, borough: "Brooklyn" }))
+      const manhattanData = parseCSV(manhattanText).map((trip) => ({ ...trip, borough: "Manhattan" }))
+      const queensData = parseCSV(queensText).map((trip) => ({ ...trip, borough: "Queens" }))
+
+      // Combine the datasets
+      const combinedData = [...brooklynData, ...manhattanData, ...queensData]
+
+      setTrips(combinedData)
+      setMetrics(calculateMetrics(combinedData))
     } catch (error) {
       console.error("Error loading taxi data:", error)
     } finally {

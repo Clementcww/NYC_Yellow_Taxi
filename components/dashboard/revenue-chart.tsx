@@ -40,10 +40,12 @@ export function RevenueChart({ data }: RevenueChartProps) {
               backgroundColor: "rgba(23, 23, 23, 0.95)",
               border: "1px solid rgba(247, 185, 36, 0.3)",
               borderRadius: "8px",
-              color: "#fafafa",
+              color: "#F7B924",
             }}
             formatter={(value: number) => [formatCurrency(value), "Revenue"]}
             cursor={{ fill: "rgba(247, 185, 36, 0.1)" }}
+            itemStyle={{ color: "#F7B924" }}
+            labelStyle={{ color: "#F7B924" }}
           />
           <Bar dataKey="revenue" radius={[0, 4, 4, 0]}>
             {data.map((_, index) => (

@@ -42,7 +42,7 @@ export function TripsChart({ data }: TripsChartProps) {
               backgroundColor: "rgba(23, 23, 23, 0.95)",
               border: "1px solid rgba(247, 185, 36, 0.3)",
               borderRadius: "8px",
-              color: "#fafafa",
+              color: "#F7B924",
             }}
             labelFormatter={formatDate}
             formatter={(value: number, name: string) => {
@@ -51,6 +51,8 @@ export function TripsChart({ data }: TripsChartProps) {
               }
               return [value, "Trips"]
             }}
+            itemStyle={{ color: "#F7B924" }}
+            labelStyle={{ color: "#F7B924" }}
           />
           <Area
             yAxisId="left"
