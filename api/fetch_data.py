@@ -10,25 +10,59 @@ class handler(BaseHTTPRequestHandler):
             client = bigquery.Client(project='gen-lang-client-0589793979')
 
             # Define the query
-            query = """
-                SELECT
-                    t.pickup_datetime,
-                    t.dropoff_datetime,
-                    t.trip_distance,
-                    t.fare_amount,
-                    z.borough
-                FROM
-                    `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2022` AS t
-                JOIN
-                    `bigquery-public-data.new_york_taxi_trips.taxi_zone_geom` AS z
-                ON
-                    t.pickup_location_id = z.zone_id
-                WHERE
-                    z.borough IN ('Manhattan', 'Queens', 'Brooklyn')
-                ORDER BY
-                    t.pickup_datetime DESC
-                LIMIT 100
-            """
+                SELECT * FROM (
+                    SELECT
+                        t.pickup_datetime,
+                        t.dropoff_datetime,
+                        t.trip_distance,
+                        t.fare_amount,
+                        z.borough
+                    FROM
+                        `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2022` AS t
+                    JOIN
+                        `bigquery-public-data.new_york_taxi_trips.taxi_zone_geom` AS z
+                    ON
+                        t.pickup_location_id = z.zone_id
+                    WHERE
+                        z.borough = 'Manhattan'
+                    ORDER BY t.pickup_datetime DESC LIMIT 33
+                )
+                UNION ALL
+                SELECT * FROM (
+                    SELECT
+                        t.pickup_datetime,
+                        t.dropoff_datetime,
+                        t.trip_distance,
+                        t.fare_amount,
+                        z.borough
+                    FROM
+                        `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2022` AS t
+                    JOIN
+                        `bigquery-public-data.new_york_taxi_trips.taxi_zone_geom` AS z
+                    ON
+                        t.pickup_location_id = z.zone_id
+                    WHERE
+                        z.borough = 'Queens'
+                    ORDER BY t.pickup_datetime DESC LIMIT 33
+                )
+                UNION ALL
+                SELECT * FROM (
+                    SELECT
+                        t.pickup_datetime,
+                        t.dropoff_datetime,
+                        t.trip_distance,
+                        t.fare_amount,
+                        z.borough
+                    FROM
+                        `bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2022` AS t
+                    JOIN
+                        `bigquery-public-data.new_york_taxi_trips.taxi_zone_geom` AS z
+                    ON
+                        t.pickup_location_id = z.zone_id
+                    WHERE
+                        z.borough = 'Brooklyn'
+                    ORDER BY t.pickup_datetime DESC LIMIT 34
+                )
 
             # Run the query
             query_job = client.query(query)
