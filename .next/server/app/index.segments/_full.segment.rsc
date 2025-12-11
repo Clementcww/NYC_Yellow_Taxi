@@ -1,0 +1,22 @@
+1:"$Sreact.fragment"
+2:I[39756,["/_next/static/chunks/501f4f1c6c42cd35.js"],"default"]
+3:I[37457,["/_next/static/chunks/501f4f1c6c42cd35.js"],"default"]
+4:I[2355,["/_next/static/chunks/c6221d48f09904bf.js"],"Analytics"]
+5:I[47257,["/_next/static/chunks/501f4f1c6c42cd35.js"],"ClientPageRoot"]
+6:I[31713,["/_next/static/chunks/c6221d48f09904bf.js","/_next/static/chunks/3653c3ef151addcb.js"],"default"]
+9:I[97367,["/_next/static/chunks/501f4f1c6c42cd35.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+c:I[97367,["/_next/static/chunks/501f4f1c6c42cd35.js"],"ViewportBoundary"]
+e:I[97367,["/_next/static/chunks/501f4f1c6c42cd35.js"],"MetadataBoundary"]
+10:I[68027,["/_next/static/chunks/501f4f1c6c42cd35.js"],"default"]
+:HL["/_next/static/chunks/a7e9e262fac2f619.css","style"]
+:HL["/_next/static/media/68d403cf9f2c68c5-s.p.f9f15f61.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/70bc3e132a0a741e-s.p.15008bfb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"b":"5_mV47ZkFcNpcyfDXdcZC","c":["",""],"q":"","i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/a7e9e262fac2f619.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/c6221d48f09904bf.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"dark","children":["$","body",null,{"className":"font-sans antialiased min-h-screen bg-background","children":[["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L4",null,{}]]}]}]]}],{"children":[["$","$1","c",{"children":[["$","$L5",null,{"Component":"$6","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@7","$@8"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/3653c3ef151addcb.js","async":true,"nonce":"$undefined"}]],["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]]}],{},null,false,false]},null,false,false],["$","$1","h",{"children":[null,["$","$Lc",null,{"children":"$@d"}],["$","div",null,{"hidden":true,"children":["$","$Le",null,{"children":["$","$a",null,{"name":"Next.Metadata","children":"$@f"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],false]],"m":"$undefined","G":["$10",[]],"S":true}
+7:{}
+8:"$0:f:0:1:1:children:0:props:children:0:props:serverProvidedParams:params"
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#F7B924"}]]
+f:[["$","title","0",{"children":"NYC Yellow Taxi Dashboard"}],["$","meta","1",{"name":"description","content":"Real-time analytics dashboard for NYC Yellow Taxi data"}],["$","meta","2",{"name":"generator","content":"v0.app"}]]
+b:null

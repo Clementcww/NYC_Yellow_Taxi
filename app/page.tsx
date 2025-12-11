@@ -14,6 +14,7 @@ export default function DashboardPage() {
   const [trips, setTrips] = useState<TaxiTrip[]>([])
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [selectedBorough, setSelectedBorough] = useState("All")
 
   const loadData = useCallback(async () => {
     setIsLoading(true)
@@ -49,6 +50,12 @@ export default function DashboardPage() {
     }
   }, [])
 
+  const filteredTrips = trips.filter(trip =>
+    selectedBorough === "All" || trip.borough === selectedBorough
+  )
+
+  const filteredMetrics = filteredTrips.length > 0 ? calculateMetrics(filteredTrips) : null
+
   useEffect(() => {
     loadData()
   }, [loadData])
@@ -70,23 +77,28 @@ export default function DashboardPage() {
       <div className="fixed inset-0 bg-gradient-to-br from-[#F7B924]/5 via-transparent to-transparent pointer-events-none" />
       <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-[#F7B924]/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <DashboardHeader onRefresh={loadData} isLoading={isLoading} />
+      <DashboardHeader
+        onRefresh={loadData}
+        isLoading={isLoading}
+        selectedBorough={selectedBorough}
+        onBoroughChange={setSelectedBorough}
+      />
 
       <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         {/* Summary Cards */}
-        {metrics && <SummaryCards metrics={metrics} />}
+        {filteredMetrics && <SummaryCards metrics={filteredMetrics} />}
 
         {/* Charts Row */}
-        {metrics && (
+        {filteredMetrics && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <RevenueChart data={metrics.revenueByBorough} />
-            <TripsChart data={metrics.tripsOverTime} />
-            <PaymentChart data={metrics.paymentTypeDistribution} />
+            <RevenueChart data={filteredMetrics.revenueByBorough} />
+            <TripsChart data={filteredMetrics.tripsOverTime} />
+            <PaymentChart data={filteredMetrics.paymentTypeDistribution} />
           </div>
         )}
 
         {/* Trips Table */}
-        <TripsTable trips={trips} />
+        <TripsTable trips={filteredTrips} />
 
         {/* Footer */}
         <footer className="pt-6 pb-4 border-t border-[#F7B924]/10">
